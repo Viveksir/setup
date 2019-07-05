@@ -4,17 +4,17 @@
 #echo login to root
 #sudo -i
 
-sshpass -p "123" ssh -o StrictHostKeyChecking=no satya@172.17.0.2
+RUN docker run -it --name vivek ubuntu /bin/bash
 
 #install wget downloaded #adduser.
 apt-get update 
 echo install wget downloaded.
 apt-get install wget -y
 apt-get install vim -y
-useradd -m -d /home/sai -s /bin/bash sai
-echo "sai:sai" | chpasswd
-sed -i '21i sai    ALL=(ALL:ALL) ALL' /etc/sudoers
-cd /home/sai
+useradd -m -d /home/vivek -s /bin/bash vivek
+echo "vivek:vivek" | chpasswd
+sed -i '21i vivek    ALL=(ALL:ALL) ALL' /etc/sudoers
+cd /home/vivek
 mkdir distros
 chmod 777 -R distros
 #===========================JAVA INSTALLATION START==========================================
@@ -27,7 +27,7 @@ echo download JDK tar.gz
 echo "download JDK1.8"
 
 #! /bin/bash -
-if [[ ! -e /home/sai/distros/jdk-8u141-linux-x64.tar.gz ]]; then
+if [[ ! -e /home/vivek/distros/jdk-8u141-linux-x64.tar.gz ]]; then
     wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-x64.tar.gz
 
 
@@ -37,10 +37,10 @@ fi
 
 # move folder
 
-mv jdk-8u141-linux-x64.tar.gz /home/sai/distros/
+mv jdk-8u141-linux-x64.tar.gz /home/vivek/distros/
 
 #Unzip tar file
-cd /home/sai/distros/
+cd /home/vivek/distros/
 echo Unzip tar file
 tar zxpvf jdk-8u141-linux-x64.tar.gz
 
@@ -71,21 +71,21 @@ fi
 
 # move folder
 
-mv apache-maven-3.6.0-bin.tar.gz /home/sai/distros/
+mv apache-maven-3.6.0-bin.tar.gz /home/vivek/distros/
 
 #Unzip tar file
-cd /home/sai/distros/
+cd /home/vivek/distros/
 echo Unzip tar file
 tar zxpvf apache-maven-3.6.0-bin.tar.gz
 
 
 
 
-echo maven home: /home/sai/distros/apache-maven-3.6.0
+echo maven home: /home/vivek/distros/apache-maven-3.6.0
 
 #Setup Maven
 
-#export MAVEN_HOME=/home/sai/distros/apache-maven-3.6.0
+#export MAVEN_HOME=/home/vivek/distros/apache-maven-3.6.0
 
 
 #Tomcat Setup:
@@ -94,15 +94,15 @@ echo Tomcat Setup:
 
 echo "download Tomcat"
 
-if [[ ! -e /home/sai/distros/apache-tomcat-8.5.38.tar.gz ]]; then
+if [[ ! -e /home/vivek/distros/apache-tomcat-8.5.38.tar.gz ]]; then
     
-wget http://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.38/bin/apache-tomcat-8.5.38.tar.gz
+wget https://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.42/bin/apache-tomcat-8.5.42.tar.gz
 fi
 
 
 # move folder
 
-mv apache-tomcat-8.5.38.tar.gz /home/sai/distros/
+mv apache-tomcat-8.5.38.tar.gz /home/vivek/distros/
 
 #Unzip tar file
 echo Unzip tar file
@@ -122,7 +122,7 @@ echo Jenkins Setup:
 #Download Jenkins
 echo Download Jenkins
 
-if [[ ! -e /home/sai/distros/apache-tomcat-8.5.38/webapps/jenkins.war ]]; then
+if [[ ! -e /home/vivek/distros/apache-tomcat-8.5.38/webapps/jenkins.war ]]; then
     
 wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
 fi
@@ -154,8 +154,8 @@ echo Git Version
 git --version
 
 #Setup 
-echo export JAVA_HOME=/home/sai/distros/jdk1.8.0_141 >> .bashrc
-echo export M2_HOME=/home/sai/distros/apache-maven-3.6.0 >> .bashrc
+echo export JAVA_HOME=/home/vivek/distros/jdk1.8.0_141 >> .bashrc
+echo export M2_HOME=/home/vivek/distros/apache-maven-3.6.0 >> .bashrc
 echo 'export PATH="$JAVA_HOME/bin:$M2_HOME/bin:$PATH"' >> .bashrc
 
 source .bashrc
@@ -171,7 +171,7 @@ java -version
 
 # start tomcat 
 
- /home/sai/distros/apache-tomcat-8.5.38/bin/startup.sh
+ /home/vivek/distros/apache-tomcat-8.5.38/bin/startup.sh
 
 #echo "tomcat started"
 

@@ -1,0 +1,55 @@
+
+jdk download
+wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-x64.tar.gz
+
+mvn install
+wget http://mirrors.estointernet.in/apache/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
+
+wget https://www-eu.apache.org/dist/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.tar.gz
+
+apache tomcat
+wget https://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.42/bin/apache-tomcat-8.5.42.tar.gz
+##############################################################################################
+
+env setup
+export JAVA_HOME=/home/vivek/devops/gamut/distros/jdk1.8.0_201
+export M2_HOME=/home/vivek/devops/gamut/distros/apache-maven-3.6.0
+export T2_HOME=/home/vivek/devops/gamut/distros/apache-tomcat-8.5.38
+export SONAR=/devops/gamut/distros/sonar-scanner-3.3.0.1492-linux
+export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$T2_HOME/bin:$SONAR/bin:$PATH
+
+##############################################################################################
+
+jenkins
+wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+
+#############################################################################################
+dockerInstallation Steps: 2nd sted get.docker.io
+=====================	
+# Update apt-get cache
+	$ sudo apt-get update
+# Install docker dependencies
+	$ sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+# Add GPG key to apt repository
+	$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+# Setup Stable repository (Add docker download URL manually to apt cache):
+	$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+# Update apt package index:
+	$ sudo apt-get update
+# Install Latest version of Docker
+	$ sudo apt-get install docker-ce
+#Installation Check
+	$ sudo docker --version
+################################################################################################
+			                                             Chefdk uninstallation:
+                                                                    ========================
+        ChefDK Installation:
+        ===================                                          dpkg --list | grep chefdk
+                                                                     sudo dpkg -P chefdk
+1. Download "Chef Development Kit" (Chefdk/CDK)
+	chefdk_1.3.43-1_amd64.deb
+2. Install the debian package using
+	sudo dpkg -i chefdk_1.3.43-1_amd64.deb
+3. Verify the installation
+	$ chef --version
+##################################################################################################
